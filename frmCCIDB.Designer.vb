@@ -272,6 +272,7 @@ Partial Class frmCCIMain
         lstbxUnitType.Location = New Point(129, 79)
         lstbxUnitType.Name = "lstbxUnitType"
         tlpCCIDetails.SetRowSpan(lstbxUnitType, 3)
+        lstbxUnitType.SelectionMode = SelectionMode.MultiSimple
         lstbxUnitType.Size = New Size(293, 129)
         lstbxUnitType.TabIndex = 6
         ' 
