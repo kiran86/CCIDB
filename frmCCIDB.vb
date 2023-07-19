@@ -45,7 +45,7 @@ Public Class frmCCIMain
         ModOleDbCon.closeDB()
     End Sub
 
-    Private Sub cmbxDistrict_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbxDistrict.SelectedIndexChanged
+    Private Sub cmbxDistrict_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmbxDistrict.SelectionChangeCommitted
         cmbxCCI.Items.Clear()
         cmbxCCI.ResetText()
         ModOleDbCon.connectDB()
@@ -64,23 +64,29 @@ Public Class frmCCIMain
         End Try
     End Sub
 
-    Private Sub cmbxCCI_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbxCCI.SelectedIndexChanged
-        cmbxUnitNo.Items.Clear()
+    Private Sub cmbxCCI_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmbxCCI.SelectionChangeCommitted
         cmbxUnitNo.ResetText()
         ModOleDbCon.connectDB()
-        sql = "select CCI.CCI_UNIT_NO & CCI_UNIT_TYPE.category AS CATEGORY
+        sql = "select distinct CCI.ID as CCI_ID, CCI.CCI_UNIT_NO & ' ' & CCI_UNIT_TYPE.type_of_child as CATEGORY
                 from CCI, UNIT_TYPES, CCI_UNIT_TYPE
                 where 
-                    CCI.District = '" & cmbxDistrict.SelectedItem & "' AND 
-                    CCI.CCI_NAME = '" & cmbxCCI.SelectedItem & "' AND
-                    CCI.ID = UNIT_TYPES.CCI_ID AND UNIT_TYPES.TYPE_ID = CCI_UNIT_TYPE.ID"
+                    CCI.District = '" & cmbxDistrict.SelectedItem & "' and 
+                    CCI.CCI_NAME = '" & cmbxCCI.SelectedItem & "' and
+                    CCI.ID = UNIT_TYPES.CCI_ID and UNIT_TYPES.TYPE_ID = CCI_UNIT_TYPE.ID"
+        'System.Diagnostics.Debug.WriteLine(sql)
+
+        Dim dict As Dictionary(Of Integer, String) = New Dictionary(Of Integer, String)
         Try
             cmd = ModOleDbCon.conDB.CreateCommand()
             cmd.CommandText = sql
             reader = cmd.ExecuteReader()
             While reader.Read()
-                cmbxUnitNo.Items.Add(reader.Item("CATEGORY"))
+                dict.Add(reader.Item("CCI_ID"), reader.Item("CATEGORY"))
             End While
+            cmbxUnitNo.DataSource = New BindingSource(dict, Nothing)
+            cmbxUnitNo.ValueMember = "Key"
+            cmbxUnitNo.DisplayMember = "Value"
+            cmbxUnitNo.SelectedIndex = -1
         Catch ex As Exception
             MsgBox(ex.Message)
         Finally
@@ -88,17 +94,15 @@ Public Class frmCCIMain
         End Try
     End Sub
 
-    Private Sub cmbxUnitNo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbxUnitNo.SelectedIndexChanged
+    Private Sub cmbxUnitNo_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmbxUnitNo.SelectionChangeCommitted
         tlpCCIDetails.Enabled = True
         ModOleDbCon.connectDB()
         'Set values as per selections
         sql = "select *  
                 from CCI, CCI_UNIT_TYPE, STATUS
                 where 
-                    CCI.District = '" & cmbxDistrict.SelectedItem & "' AND 
-                    CCI.CCI_NAME = '" & cmbxCCI.SelectedItem & "' AND
-                    CCI.CCI_UNIT_NO = " & cmbxUnitNo.SelectedItem & " AND
-                    CCI.CCI_UNIT_TYPE = CCI_UNIT_TYPE.ID" & " AND
+                    CCI.ID = " & cmbxUnitNo.SelectedValue & " AND
+                    CCI.CCI_UNIT_TYPE = CCI_UNIT_TYPE.ID AND
                     CCI.REG_STATUS = STATUS.ID"
         Try
             cmd = ModOleDbCon.conDB.CreateCommand()
@@ -144,6 +148,8 @@ Public Class frmCCIMain
             MsgBox(ex.Message & "SQL: " & sql)
         Finally
             ModOleDbCon.closeDB()
+            bttnUpdate.Enabled = True
+            bttnAddUnit.Enabled = True
         End Try
     End Sub
 End Class

@@ -113,15 +113,15 @@ Partial Class frmCCIMain
         lblCCI.AutoSize = True
         lblCCI.Location = New Point(301, 53)
         lblCCI.Name = "lblCCI"
-        lblCCI.Size = New Size(177, 25)
+        lblCCI.Size = New Size(39, 25)
         lblCCI.TabIndex = 3
-        lblCCI.Text = "Child Care Institution"
+        lblCCI.Text = "CCI"
         ' 
         ' cmbxCCI
         ' 
         cmbxCCI.DropDownStyle = ComboBoxStyle.DropDownList
         cmbxCCI.FormattingEnabled = True
-        cmbxCCI.Location = New Point(484, 50)
+        cmbxCCI.Location = New Point(346, 50)
         cmbxCCI.Name = "cmbxCCI"
         cmbxCCI.Size = New Size(385, 33)
         cmbxCCI.TabIndex = 4
@@ -129,7 +129,7 @@ Partial Class frmCCIMain
         ' lblUnitNo
         ' 
         lblUnitNo.AutoSize = True
-        lblUnitNo.Location = New Point(875, 53)
+        lblUnitNo.Location = New Point(737, 53)
         lblUnitNo.Name = "lblUnitNo"
         lblUnitNo.Size = New Size(44, 25)
         lblUnitNo.TabIndex = 5
@@ -139,9 +139,9 @@ Partial Class frmCCIMain
         ' 
         cmbxUnitNo.DropDownStyle = ComboBoxStyle.DropDownList
         cmbxUnitNo.FormattingEnabled = True
-        cmbxUnitNo.Location = New Point(925, 50)
+        cmbxUnitNo.Location = New Point(787, 50)
         cmbxUnitNo.Name = "cmbxUnitNo"
-        cmbxUnitNo.Size = New Size(65, 33)
+        cmbxUnitNo.Size = New Size(203, 33)
         cmbxUnitNo.TabIndex = 6
         ' 
         ' lblStrength
