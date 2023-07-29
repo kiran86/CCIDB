@@ -152,4 +152,12 @@ Public Class frmCCIMain
             bttnAddUnit.Enabled = True
         End Try
     End Sub
+
+    Private Sub bttnUpdate_Click(sender As Object, e As EventArgs) Handles bttnUpdate.Click
+        ModOleDbCon.connectDB()
+        sql = "update table CCI set
+                CCI_UNIT_GENDER = '" & cmbxGender.SelectedText & "'
+                CCI_UNIT_STRENGTH = " & Int(txtbxStrength.Text) & "
+                "
+    End Sub
 End Class
