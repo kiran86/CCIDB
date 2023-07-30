@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports System.Runtime.CompilerServices
 Imports System.Threading.Tasks.Dataflow
 
 Public Class frmCCIMain
@@ -181,5 +182,9 @@ Public Class frmCCIMain
             MsgBox("CCI Data Updated!", , "Updated")
             ModOleDbCon.closeDB()
         End Try
+    End Sub
+
+    Private Sub NewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewToolStripMenuItem.Click
+        frmNewCCIMain.ShowDialog()
     End Sub
 End Class
