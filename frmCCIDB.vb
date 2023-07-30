@@ -154,10 +154,32 @@ Public Class frmCCIMain
     End Sub
 
     Private Sub bttnUpdate_Click(sender As Object, e As EventArgs) Handles bttnUpdate.Click
-        ModOleDbCon.connectDB()
-        sql = "update table CCI set
-                CCI_UNIT_GENDER = '" & cmbxGender.SelectedText & "'
-                CCI_UNIT_STRENGTH = " & Int(txtbxStrength.Text) & "
-                "
+        ' Update CCI Table
+        sql = "update CCI set
+                CCI_UNIT_GENDER = '" & cmbxGender.SelectedItem & "',
+                CCI_UNIT_STRENGTH = " & Int(txtbxStrength.Text) & ",
+                Address = '" & txtbxAddress.Text & "',
+                PIN = " & Int(txtbxPIN.Text) & ",
+                CONTACT_NAME = '" & txtbxContactName.Text & "',
+                CONTACT_DESG = '" & txtbxDesignation.Text & "',
+                CONTACT_PHNO = " & Int(txtbxPhNo.Text) & ",
+                PAB_APPROVED = " & rdobtnPABYes.Checked & ",
+                REG_NO = '" & txtbxRegNo.Text & "',
+                REG_DATE = #" & dtmpValidFrom.Value.Date.ToString & "#,
+                REG_VALID_UPTO = #" & dtmpValidTo.Value.Date.ToString & "#,
+                REG_STATUS = " & cmbxRegFileStatus.SelectedIndex + 1 & "
+                where ID = " & cmbxUnitNo.SelectedValue & ";"
+        Try
+            ModOleDbCon.connectDB()
+            cmd = ModOleDbCon.conDB.CreateCommand()
+            cmd.CommandText = sql
+            cmd.ExecuteNonQuery()
+        Catch ex As Exception
+            System.Diagnostics.Debug.WriteLine(sql)
+            MsgBox(ex.Message & ": " & sql)
+        Finally
+            MsgBox("CCI Data Updated!", , "Updated")
+            ModOleDbCon.closeDB()
+        End Try
     End Sub
 End Class
