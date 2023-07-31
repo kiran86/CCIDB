@@ -6,7 +6,15 @@ Public Class frmCCIMain
     Dim sql As String
     Dim cmd As OleDb.OleDbCommand
     Dim reader As OleDb.OleDbDataReader
-    Dim CCI_ID As Integer
+    Private _CCI_ID As Integer
+    Friend Property CCI_ID As Integer
+        Get
+            Return _CCI_ID
+        End Get
+        Set(value As Integer)
+            _CCI_ID = value
+        End Set
+    End Property
     Private Sub frmCCIMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ModOleDbCon.connectDB()
 
@@ -188,5 +196,9 @@ Public Class frmCCIMain
 
     Private Sub NewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewToolStripMenuItem.Click
         frmNewCCIMain.ShowDialog()
+    End Sub
+
+    Private Sub bttnAddUnit_Click(sender As Object, e As EventArgs) Handles bttnAddUnit.Click
+        frmNewCCIUnit.ShowDialog()
     End Sub
 End Class
