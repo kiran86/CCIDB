@@ -62,32 +62,17 @@ Public Class frmNewCCIUnit
     End Sub
 
     Private Sub bttnAddCCI_Click(sender As Object, e As EventArgs) Handles bttnAddCCIUnit.Click
-        Dim cci_id As Integer
         Try
+            ' Inset into CCI
             ModOleDbCon.connectDB()
-            ' Find no. of units of selected category functioning
-            sql = "select count(*)  
-                from CCI, UNIT_TYPES
-                where 
-                    CCI.District = '" & cmbxDistrict.SelectedItem & "' AND
-                    CCI.CCI_NAME = '" & txtbxCCIName.Text & "' AND
-                    UNIT_TYPES.TYPE_ID = " &  & "
-                    CCI.ID = UNIT_TYPES.CCI_ID
-CCI.CCI_UNIT_TYPE = CCI_UNIT_TYPE.ID AND
-                    CCI.REG_STATUS = STATUS.ID"
-            Try
-                cmd = ModOleDbCon.conDB.CreateCommand()
-                cmd.CommandText = sql
-                reader = cmd.ExecuteReader()
-                ' Inset into CCI Table
-                sql = "
+            sql = "
             insert into CCI
                 (District, CCI_NAME, RUN_BY, CCI_UNIT_NO, CCI_UNIT_GENDER, CCI_UNIT_STRENGTH, Address, PIN, CONTACT_NAME, CONTACT_DESG, CONTACT_PHNO, PAB_APPROVED, REG_NO, REG_DATE, REG_VALID_UPTO, REG_STATUS)
             values
                 ('" & cmbxDistrict.SelectedItem & "',
                 '" & txtbxCCIName.Text & "',
                 '" & cmbxCCIRunBy.SelectedItem & "',
-                " & unit_no + 1 & ", 
+                " & Int(txtbxUnitNo.Text) & ", 
                 '" & cmbxGender.SelectedItem & "',
                 " & Int(txtbxStrength.Text) & ",
                 '" & txtbxAddress.Text & "',
@@ -109,14 +94,14 @@ CCI.CCI_UNIT_TYPE = CCI_UNIT_TYPE.ID AND
             cmd.CommandText = sql
             reader = cmd.ExecuteReader()
             While reader.Read()
-                cci_id = reader.Item("ID")
+                CCI_ID = reader.Item("ID")
             End While
             ' Insert into UNIT_TYPES Relation
             sql = "insert into UNIT_TYPES
                     (CCI_ID, TYPE_ID)
                     values"
             For Each i In lstbxUnitType.SelectedIndices
-                sql = sql & "(" & cci_id & ", " & i + 1 & "),"
+                sql = sql & "(" & CCI_ID & ", " & i + 1 & "),"
             Next
             sql = sql.Remove(sql.Length - 1, 1)
             cmd = ModOleDbCon.conDB.CreateCommand()
@@ -128,6 +113,6 @@ CCI.CCI_UNIT_TYPE = CCI_UNIT_TYPE.ID AND
             MsgBox(ex.Message & ": " & sql)
         Finally
             ModOleDbCon.closeDB()
-        End Try
+            End Try
     End Sub
 End Class

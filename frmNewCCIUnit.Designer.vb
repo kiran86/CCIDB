@@ -49,7 +49,6 @@ Partial Class frmNewCCIUnit
         lblContactPhNo = New Label()
         txtbxPhNo = New TextBox()
         lblContactDesg = New Label()
-        txtbxDesignation = New TextBox()
         lblContactName = New Label()
         txtbxContactName = New TextBox()
         lblRegStatus = New Label()
@@ -57,6 +56,9 @@ Partial Class frmNewCCIUnit
         txtbxCCIName = New TextBox()
         cmbxCCIRunBy = New ComboBox()
         lblCCIRunBy = New Label()
+        txtbxDesignation = New TextBox()
+        Label1 = New Label()
+        txtbxUnitNo = New TextBox()
         tlpCCIDetails.SuspendLayout()
         grpbxPABStatus.SuspendLayout()
         SuspendLayout()
@@ -147,35 +149,37 @@ Partial Class frmNewCCIUnit
         tlpCCIDetails.Controls.Add(txtbxStrength, 1, 3)
         tlpCCIDetails.Controls.Add(lblUnitType, 0, 4)
         tlpCCIDetails.Controls.Add(lstbxUnitType, 1, 4)
-        tlpCCIDetails.Controls.Add(grpbxPABStatus, 2, 1)
+        tlpCCIDetails.Controls.Add(grpbxPABStatus, 2, 2)
         tlpCCIDetails.Controls.Add(cmbxDistrict, 1, 0)
         tlpCCIDetails.Controls.Add(lblCCIAddress, 0, 7)
         tlpCCIDetails.Controls.Add(lblDistrict, 0, 0)
         tlpCCIDetails.Controls.Add(txtbxAddress, 1, 7)
         tlpCCIDetails.Controls.Add(lblPIN, 0, 9)
         tlpCCIDetails.Controls.Add(txtbxPIN, 1, 9)
-        tlpCCIDetails.Controls.Add(lblRegNo, 2, 3)
-        tlpCCIDetails.Controls.Add(txtbxRegNo, 3, 3)
-        tlpCCIDetails.Controls.Add(lblValidFrom, 2, 4)
-        tlpCCIDetails.Controls.Add(dtmpValidFrom, 3, 4)
-        tlpCCIDetails.Controls.Add(lblVlidTo, 2, 5)
-        tlpCCIDetails.Controls.Add(dtmpValidTo, 3, 5)
-        tlpCCIDetails.Controls.Add(lblContactPhNo, 2, 9)
-        tlpCCIDetails.Controls.Add(txtbxPhNo, 3, 9)
-        tlpCCIDetails.Controls.Add(lblContactDesg, 2, 8)
-        tlpCCIDetails.Controls.Add(txtbxDesignation, 3, 8)
-        tlpCCIDetails.Controls.Add(lblContactName, 2, 7)
-        tlpCCIDetails.Controls.Add(txtbxContactName, 3, 7)
-        tlpCCIDetails.Controls.Add(lblRegStatus, 2, 6)
-        tlpCCIDetails.Controls.Add(cmbxRegFileStatus, 3, 6)
+        tlpCCIDetails.Controls.Add(lblRegNo, 2, 4)
+        tlpCCIDetails.Controls.Add(txtbxRegNo, 3, 4)
+        tlpCCIDetails.Controls.Add(lblValidFrom, 2, 5)
+        tlpCCIDetails.Controls.Add(dtmpValidFrom, 3, 5)
+        tlpCCIDetails.Controls.Add(lblVlidTo, 2, 6)
+        tlpCCIDetails.Controls.Add(dtmpValidTo, 3, 6)
+        tlpCCIDetails.Controls.Add(lblContactPhNo, 2, 10)
+        tlpCCIDetails.Controls.Add(txtbxPhNo, 3, 10)
+        tlpCCIDetails.Controls.Add(lblContactDesg, 2, 9)
+        tlpCCIDetails.Controls.Add(lblContactName, 2, 8)
+        tlpCCIDetails.Controls.Add(txtbxContactName, 3, 8)
+        tlpCCIDetails.Controls.Add(lblRegStatus, 2, 7)
+        tlpCCIDetails.Controls.Add(cmbxRegFileStatus, 3, 7)
         tlpCCIDetails.Controls.Add(txtbxCCIName, 3, 0)
         tlpCCIDetails.Controls.Add(lblCCIName, 2, 0)
         tlpCCIDetails.Controls.Add(cmbxCCIRunBy, 1, 1)
         tlpCCIDetails.Controls.Add(lblCCIRunBy, 0, 1)
+        tlpCCIDetails.Controls.Add(txtbxDesignation, 3, 9)
+        tlpCCIDetails.Controls.Add(Label1, 2, 1)
+        tlpCCIDetails.Controls.Add(txtbxUnitNo, 3, 1)
         tlpCCIDetails.Location = New Point(11, 11)
         tlpCCIDetails.Margin = New Padding(2)
         tlpCCIDetails.Name = "tlpCCIDetails"
-        tlpCCIDetails.RowCount = 9
+        tlpCCIDetails.RowCount = 11
         tlpCCIDetails.RowStyles.Add(New RowStyle())
         tlpCCIDetails.RowStyles.Add(New RowStyle())
         tlpCCIDetails.RowStyles.Add(New RowStyle())
@@ -187,7 +191,7 @@ Partial Class frmNewCCIUnit
         tlpCCIDetails.RowStyles.Add(New RowStyle())
         tlpCCIDetails.RowStyles.Add(New RowStyle())
         tlpCCIDetails.RowStyles.Add(New RowStyle(SizeType.Absolute, 20F))
-        tlpCCIDetails.Size = New Size(600, 314)
+        tlpCCIDetails.Size = New Size(600, 308)
         tlpCCIDetails.TabIndex = 12
         ' 
         ' txtbxStrength
@@ -225,7 +229,7 @@ Partial Class frmNewCCIUnit
         tlpCCIDetails.SetColumnSpan(grpbxPABStatus, 2)
         grpbxPABStatus.Controls.Add(rdobtnPABYes)
         grpbxPABStatus.Controls.Add(rdobtnPABNo)
-        grpbxPABStatus.Location = New Point(299, 31)
+        grpbxPABStatus.Location = New Point(299, 60)
         grpbxPABStatus.Margin = New Padding(2)
         grpbxPABStatus.Name = "grpbxPABStatus"
         grpbxPABStatus.Padding = New Padding(2)
@@ -242,7 +246,7 @@ Partial Class frmNewCCIUnit
         rdobtnPABYes.Margin = New Padding(2)
         rdobtnPABYes.Name = "rdobtnPABYes"
         rdobtnPABYes.Size = New Size(42, 19)
-        rdobtnPABYes.TabIndex = 11
+        rdobtnPABYes.TabIndex = 12
         rdobtnPABYes.TabStop = True
         rdobtnPABYes.Text = "Yes"
         rdobtnPABYes.UseVisualStyleBackColor = True
@@ -254,7 +258,7 @@ Partial Class frmNewCCIUnit
         rdobtnPABNo.Margin = New Padding(2)
         rdobtnPABNo.Name = "rdobtnPABNo"
         rdobtnPABNo.Size = New Size(41, 19)
-        rdobtnPABNo.TabIndex = 12
+        rdobtnPABNo.TabIndex = 13
         rdobtnPABNo.TabStop = True
         rdobtnPABNo.Text = "No"
         rdobtnPABNo.UseVisualStyleBackColor = True
@@ -277,13 +281,13 @@ Partial Class frmNewCCIUnit
         txtbxAddress.Multiline = True
         txtbxAddress.Name = "txtbxAddress"
         tlpCCIDetails.SetRowSpan(txtbxAddress, 2)
-        txtbxAddress.Size = New Size(205, 79)
+        txtbxAddress.Size = New Size(205, 50)
         txtbxAddress.TabIndex = 7
         ' 
         ' lblPIN
         ' 
         lblPIN.AutoSize = True
-        lblPIN.Location = New Point(2, 278)
+        lblPIN.Location = New Point(2, 249)
         lblPIN.Margin = New Padding(2, 0, 2, 0)
         lblPIN.Name = "lblPIN"
         lblPIN.Size = New Size(26, 15)
@@ -293,7 +297,7 @@ Partial Class frmNewCCIUnit
         ' txtbxPIN
         ' 
         txtbxPIN.Enabled = False
-        txtbxPIN.Location = New Point(90, 280)
+        txtbxPIN.Location = New Point(90, 251)
         txtbxPIN.Margin = New Padding(2)
         txtbxPIN.Name = "txtbxPIN"
         txtbxPIN.Size = New Size(205, 23)
@@ -302,7 +306,7 @@ Partial Class frmNewCCIUnit
         ' lblRegNo
         ' 
         lblRegNo.AutoSize = True
-        lblRegNo.Location = New Point(299, 85)
+        lblRegNo.Location = New Point(299, 112)
         lblRegNo.Margin = New Padding(2, 0, 2, 0)
         lblRegNo.Name = "lblRegNo"
         lblRegNo.Size = New Size(89, 15)
@@ -311,7 +315,7 @@ Partial Class frmNewCCIUnit
         ' 
         ' txtbxRegNo
         ' 
-        txtbxRegNo.Location = New Point(402, 87)
+        txtbxRegNo.Location = New Point(402, 114)
         txtbxRegNo.Margin = New Padding(2)
         txtbxRegNo.Name = "txtbxRegNo"
         txtbxRegNo.Size = New Size(196, 23)
@@ -320,7 +324,7 @@ Partial Class frmNewCCIUnit
         ' lblValidFrom
         ' 
         lblValidFrom.AutoSize = True
-        lblValidFrom.Location = New Point(299, 112)
+        lblValidFrom.Location = New Point(299, 139)
         lblValidFrom.Margin = New Padding(2, 0, 2, 0)
         lblValidFrom.Name = "lblValidFrom"
         lblValidFrom.Size = New Size(63, 15)
@@ -329,7 +333,7 @@ Partial Class frmNewCCIUnit
         ' 
         ' dtmpValidFrom
         ' 
-        dtmpValidFrom.Location = New Point(402, 114)
+        dtmpValidFrom.Location = New Point(402, 141)
         dtmpValidFrom.Margin = New Padding(2)
         dtmpValidFrom.Name = "dtmpValidFrom"
         dtmpValidFrom.Size = New Size(196, 23)
@@ -338,7 +342,7 @@ Partial Class frmNewCCIUnit
         ' lblVlidTo
         ' 
         lblVlidTo.AutoSize = True
-        lblVlidTo.Location = New Point(299, 139)
+        lblVlidTo.Location = New Point(299, 166)
         lblVlidTo.Margin = New Padding(2, 0, 2, 0)
         lblVlidTo.Name = "lblVlidTo"
         lblVlidTo.Size = New Size(64, 15)
@@ -347,7 +351,7 @@ Partial Class frmNewCCIUnit
         ' 
         ' dtmpValidTo
         ' 
-        dtmpValidTo.Location = New Point(402, 141)
+        dtmpValidTo.Location = New Point(402, 168)
         dtmpValidTo.Margin = New Padding(2)
         dtmpValidTo.Name = "dtmpValidTo"
         dtmpValidTo.Size = New Size(196, 23)
@@ -356,7 +360,7 @@ Partial Class frmNewCCIUnit
         ' lblContactPhNo
         ' 
         lblContactPhNo.AutoSize = True
-        lblContactPhNo.Location = New Point(299, 278)
+        lblContactPhNo.Location = New Point(299, 276)
         lblContactPhNo.Margin = New Padding(2, 0, 2, 0)
         lblContactPhNo.Name = "lblContactPhNo"
         lblContactPhNo.Size = New Size(63, 15)
@@ -365,7 +369,7 @@ Partial Class frmNewCCIUnit
         ' 
         ' txtbxPhNo
         ' 
-        txtbxPhNo.Location = New Point(402, 280)
+        txtbxPhNo.Location = New Point(402, 278)
         txtbxPhNo.Margin = New Padding(2)
         txtbxPhNo.Name = "txtbxPhNo"
         txtbxPhNo.Size = New Size(196, 23)
@@ -374,25 +378,17 @@ Partial Class frmNewCCIUnit
         ' lblContactDesg
         ' 
         lblContactDesg.AutoSize = True
-        lblContactDesg.Location = New Point(299, 222)
+        lblContactDesg.Location = New Point(299, 249)
         lblContactDesg.Margin = New Padding(2, 0, 2, 0)
         lblContactDesg.Name = "lblContactDesg"
         lblContactDesg.Size = New Size(70, 15)
         lblContactDesg.TabIndex = 22
         lblContactDesg.Text = "Designation"
         ' 
-        ' txtbxDesignation
-        ' 
-        txtbxDesignation.Location = New Point(402, 224)
-        txtbxDesignation.Margin = New Padding(2)
-        txtbxDesignation.Name = "txtbxDesignation"
-        txtbxDesignation.Size = New Size(196, 23)
-        txtbxDesignation.TabIndex = 23
-        ' 
         ' lblContactName
         ' 
         lblContactName.AutoSize = True
-        lblContactName.Location = New Point(299, 195)
+        lblContactName.Location = New Point(299, 222)
         lblContactName.Margin = New Padding(2, 0, 2, 0)
         lblContactName.Name = "lblContactName"
         lblContactName.Size = New Size(84, 15)
@@ -401,7 +397,7 @@ Partial Class frmNewCCIUnit
         ' 
         ' txtbxContactName
         ' 
-        txtbxContactName.Location = New Point(402, 197)
+        txtbxContactName.Location = New Point(402, 224)
         txtbxContactName.Margin = New Padding(2)
         txtbxContactName.Name = "txtbxContactName"
         txtbxContactName.Size = New Size(196, 23)
@@ -410,7 +406,7 @@ Partial Class frmNewCCIUnit
         ' lblRegStatus
         ' 
         lblRegStatus.AutoSize = True
-        lblRegStatus.Location = New Point(299, 166)
+        lblRegStatus.Location = New Point(299, 195)
         lblRegStatus.Margin = New Padding(2, 0, 2, 0)
         lblRegStatus.Name = "lblRegStatus"
         lblRegStatus.Size = New Size(60, 15)
@@ -422,7 +418,7 @@ Partial Class frmNewCCIUnit
         cmbxRegFileStatus.DropDownStyle = ComboBoxStyle.DropDownList
         cmbxRegFileStatus.FormattingEnabled = True
         cmbxRegFileStatus.ItemHeight = 15
-        cmbxRegFileStatus.Location = New Point(402, 168)
+        cmbxRegFileStatus.Location = New Point(402, 197)
         cmbxRegFileStatus.Margin = New Padding(2)
         cmbxRegFileStatus.Name = "cmbxRegFileStatus"
         cmbxRegFileStatus.Size = New Size(196, 23)
@@ -455,11 +451,35 @@ Partial Class frmNewCCIUnit
         lblCCIRunBy.TabIndex = 30
         lblCCIRunBy.Text = "Run By"
         ' 
+        ' txtbxDesignation
+        ' 
+        txtbxDesignation.Location = New Point(402, 251)
+        txtbxDesignation.Margin = New Padding(2)
+        txtbxDesignation.Name = "txtbxDesignation"
+        txtbxDesignation.Size = New Size(196, 23)
+        txtbxDesignation.TabIndex = 23
+        ' 
+        ' Label1
+        ' 
+        Label1.AutoSize = True
+        Label1.Location = New Point(300, 29)
+        Label1.Name = "Label1"
+        Label1.Size = New Size(51, 15)
+        Label1.TabIndex = 31
+        Label1.Text = "Unit No."
+        ' 
+        ' txtbxUnitNo
+        ' 
+        txtbxUnitNo.Location = New Point(403, 32)
+        txtbxUnitNo.Name = "txtbxUnitNo"
+        txtbxUnitNo.Size = New Size(194, 23)
+        txtbxUnitNo.TabIndex = 11
+        ' 
         ' frmNewCCIUnit
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(701, 328)
+        ClientSize = New Size(701, 327)
         Controls.Add(tlpCCIDetails)
         Controls.Add(bttnAddCCIUnit)
         Margin = New Padding(2)
@@ -508,4 +528,6 @@ Partial Class frmNewCCIUnit
     Friend WithEvents txtbxCCIName As TextBox
     Friend WithEvents cmbxCCIRunBy As ComboBox
     Friend WithEvents lblCCIRunBy As Label
+    Friend WithEvents Label1 As Label
+    Friend WithEvents txtbxUnitNo As TextBox
 End Class
