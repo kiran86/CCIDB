@@ -49,10 +49,11 @@ Public Class frmNewCCIMain
         ' Update CCI Table
         sql = "
             insert into CCI
-                (District, CCI_NAME, CCI_UNIT_NO, CCI_UNIT_GENDER, CCI_UNIT_STRENGTH, Address, PIN, CONTACT_NAME, CONTACT_DESG, CONTACT_PHNO, PAB_APPROVED, REG_NO, REG_DATE, REG_VALID_UPTO, REG_STATUS)
+                (District, CCI_NAME, RUN_BY, CCI_UNIT_NO, CCI_UNIT_GENDER, CCI_UNIT_STRENGTH, Address, PIN, CONTACT_NAME, CONTACT_DESG, CONTACT_PHNO, PAB_APPROVED, REG_NO, REG_DATE, REG_VALID_UPTO, REG_STATUS)
             values
                 ('" & cmbxDistrict.SelectedItem & "',
-                '" & txtbxCCIName.Text & "', 1,
+                '" & txtbxCCIName.Text & "',
+                '" & cmbxCCIRunBy.SelectedItem & "', 1,
                 '" & cmbxGender.SelectedItem & "',
                 " & Int(txtbxStrength.Text) & ",
                 '" & txtbxAddress.Text & "',

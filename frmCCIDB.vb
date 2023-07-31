@@ -112,6 +112,7 @@ Public Class frmCCIMain
 
             While reader.Read()
                 CCI_ID = reader.Item("CCI.ID")
+                cmbxCCIRunBy.SelectedItem = reader.Item("RUN_BY")
                 cmbxGender.SelectedItem = reader.Item("CCI_UNIT_GENDER")
                 If reader.Item("PAB_APPROVED") = True Then
                     rdobtnPABYes.Select()
@@ -157,6 +158,7 @@ Public Class frmCCIMain
     Private Sub bttnUpdate_Click(sender As Object, e As EventArgs) Handles bttnUpdate.Click
         ' Update CCI Table
         sql = "update CCI set
+                RUN_BY = '" & cmbxCCIRunBy.SelectedItem & "',
                 CCI_UNIT_GENDER = '" & cmbxGender.SelectedItem & "',
                 CCI_UNIT_STRENGTH = " & Int(txtbxStrength.Text) & ",
                 Address = '" & txtbxAddress.Text & "',
