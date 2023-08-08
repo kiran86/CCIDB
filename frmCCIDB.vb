@@ -155,7 +155,7 @@ Public Class frmCCIMain
                 lstbxUnitType.SelectedItem = reader.Item("category")
             End While
         Catch ex As Exception
-            MsgBox(ex.Message & "SQL: " & sql)
+            MsgBox(ex.ToString & Environment.NewLine & "SQL: " & sql)
         Finally
             ModOleDbCon.closeDB()
             bttnUpdate.Enabled = True
