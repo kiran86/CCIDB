@@ -173,7 +173,7 @@ Public Class frmCCIMain
                 PIN = " & Int(txtbxPIN.Text) & ",
                 CONTACT_NAME = '" & txtbxContactName.Text & "',
                 CONTACT_DESG = '" & txtbxDesignation.Text & "',
-                CONTACT_PHNO = " & Int(txtbxPhNo.Text) & ",
+                CONTACT_PHNO = " & If(txtbxPhNo.Text = "", 0, Int(txtbxPhNo.Text)) & ",
                 PAB_APPROVED = " & rdobtnPABYes.Checked & ",
                 REG_NO = '" & txtbxRegNo.Text & "',
                 REG_DATE = #" & dtmpValidFrom.Value.Date.ToString & "#,
