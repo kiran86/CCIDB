@@ -2,7 +2,7 @@
     Public conDB As New OleDb.OleDbConnection
 
     Public Sub connectDB()
-        conDB.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=" & Application.StartupPath & "\DB\CCIDB.mdb"
+        conDB.ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0; Data Source=" & Application.StartupPath & "\DB\CCIDB.mdb"
         If conDB.State = ConnectionState.Closed Then
             Try
                 conDB.Open()
