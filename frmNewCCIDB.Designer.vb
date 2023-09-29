@@ -433,6 +433,7 @@ Partial Class frmNewCCIMain
         ' 
         ' cmbxCCIRunBy
         ' 
+        cmbxCCIRunBy.DropDownStyle = ComboBoxStyle.DropDownList
         cmbxCCIRunBy.FormattingEnabled = True
         cmbxCCIRunBy.Items.AddRange(New Object() {"Government", "Non-Government Organisation"})
         cmbxCCIRunBy.Location = New Point(91, 32)

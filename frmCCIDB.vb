@@ -108,11 +108,11 @@ Public Class frmCCIMain
         ModOleDbCon.connectDB()
         'Set values as per selections
         sql = "select *  
-                from CCI, CCI_UNIT_TYPE, STATUS
+                from CCI
+                left join STATUS
+                on CCI.REG_STATUS = STATUS.ID
                 where 
-                    CCI.ID = " & cmbxUnitNo.SelectedValue & " AND
-                    CCI.CCI_UNIT_TYPE = CCI_UNIT_TYPE.ID AND
-                    CCI.REG_STATUS = STATUS.ID"
+                    CCI.ID = " & cmbxUnitNo.SelectedValue & ";"
         Try
             cmd = ModOleDbCon.conDB.CreateCommand()
             cmd.CommandText = sql
@@ -173,7 +173,7 @@ Public Class frmCCIMain
                 PIN = " & Int(txtbxPIN.Text) & ",
                 CONTACT_NAME = '" & txtbxContactName.Text & "',
                 CONTACT_DESG = '" & txtbxDesignation.Text & "',
-                CONTACT_PHNO = " & Int(txtbxPhNo.Text) & ",
+                CONTACT_PHNO = " & If(txtbxPhNo.Text = "", 0, Int(txtbxPhNo.Text)) & ",
                 PAB_APPROVED = " & rdobtnPABYes.Checked & ",
                 REG_NO = '" & txtbxRegNo.Text & "',
                 REG_DATE = #" & dtmpValidFrom.Value.Date.ToString & "#,
