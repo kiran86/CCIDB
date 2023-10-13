@@ -79,9 +79,10 @@ Public Class frmNewCCIMain
                 " & Int(txtbxPhNo.Text) & ",
                 " & rdobtnPABYes.Checked & ",
                 '" & txtbxRegNo.Text & "',
-                #" & dtmpValidFrom.Value.Date.ToString & "#,
-                #" & dtmpValidTo.Value.Date.ToString & "#,
+                #" & dtmpValidFrom.Value.Date.ToString("yyyy-MM-dd HH:mm:ss") & "#,
+                #" & dtmpValidTo.Value.Date.ToString("yyyy-MM-dd HH:mm:ss") & "#,
                 " & cmbxRegFileStatus.SelectedIndex + 1 & ");"
+            System.Diagnostics.Debug.WriteLine(sql)
             cmd = ModOleDbCon.conDB.CreateCommand()
             cmd.CommandText = sql
             cmd.ExecuteNonQuery()
@@ -111,5 +112,9 @@ Public Class frmNewCCIMain
         Finally
             ModOleDbCon.closeDB()
         End Try
+    End Sub
+
+    Private Sub lblContactDesg_Click(sender As Object, e As EventArgs) Handles lblContactDesg.Click
+
     End Sub
 End Class
