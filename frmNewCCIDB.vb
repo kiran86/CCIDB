@@ -47,7 +47,7 @@ Public Class frmNewCCIMain
 
     Private Sub bttnAddCCI_Click(sender As Object, e As EventArgs) Handles bttnAddCCI.Click
         Dim cci_id As Integer
-        Dim part_sql = ""
+        Dim prefix = ""
         Try
             ModOleDbCon.connectDB()
             ' check if already exists
@@ -95,16 +95,17 @@ Public Class frmNewCCIMain
                 cci_id = reader.Item("ID")
             End While
             ' Insert into UNIT_TYPES Relation
-            sql = "insert into UNIT_TYPES
+            prefix = "insert into UNIT_TYPES
                     (CCI_ID, TYPE_ID)
-                    values"
-            For Each i In lstbxUnitType.SelectedIndices
-                sql = sql & "(" & cci_id & ", " & i + 1 & "),"
-            Next
-            sql = sql.Remove(sql.Length - 1, 1)
+                    values "
+            ' Dumb MS ACCESS does not support multiple row inserts
+            ' Loop and execute each row inserts in a single sql
             cmd = ModOleDbCon.conDB.CreateCommand()
-            cmd.CommandText = sql
-            cmd.ExecuteNonQuery()
+            For Each i In lstbxUnitType.SelectedIndices
+                sql = prefix & "(" & cci_id & ", " & i + 1 & ");"
+                cmd.CommandText = sql
+                cmd.ExecuteNonQuery()
+            Next
             MsgBox("CCI Data Added!", MsgBoxStyle.Information, "CCI Added")
         Catch ex As Exception
             System.Diagnostics.Debug.WriteLine(sql)
@@ -112,9 +113,5 @@ Public Class frmNewCCIMain
         Finally
             ModOleDbCon.closeDB()
         End Try
-    End Sub
-
-    Private Sub lblContactDesg_Click(sender As Object, e As EventArgs) Handles lblContactDesg.Click
-
     End Sub
 End Class

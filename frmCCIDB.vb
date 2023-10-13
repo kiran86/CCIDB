@@ -176,8 +176,8 @@ Public Class frmCCIMain
                 CONTACT_PHNO = " & If(txtbxPhNo.Text = "", 0, Int(txtbxPhNo.Text)) & ",
                 PAB_APPROVED = " & rdobtnPABYes.Checked & ",
                 REG_NO = '" & txtbxRegNo.Text & "',
-                REG_DATE = #" & dtmpValidFrom.Value.Date.ToString & "#,
-                REG_VALID_UPTO = #" & dtmpValidTo.Value.Date.ToString & "#,
+                REG_DATE = #" & dtmpValidFrom.Value.Date.ToString("yyyy-MM-dd HH:mm:ss") & "#,
+                REG_VALID_UPTO = #" & dtmpValidTo.Value.Date.ToString("yyyy-MM-dd HH:mm:ss") & "#,
                 REG_STATUS = " & cmbxRegFileStatus.SelectedIndex + 1 & "
                 where ID = " & cmbxUnitNo.SelectedValue & ";"
         Try
