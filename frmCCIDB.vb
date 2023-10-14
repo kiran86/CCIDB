@@ -201,4 +201,8 @@ Public Class frmCCIMain
     Private Sub bttnAddUnit_Click(sender As Object, e As EventArgs) Handles bttnAddUnit.Click
         frmNewCCIUnit.ShowDialog()
     End Sub
+
+    Private Sub TestFuncToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TestFuncToolStripMenuItem.Click
+        UtilityFunctions.ClearForm(Me)
+    End Sub
 End Class

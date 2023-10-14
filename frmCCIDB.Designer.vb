@@ -63,6 +63,7 @@ Partial Class frmCCIMain
         cmbxRegFileStatus = New ComboBox()
         cmbxCCIRunBy = New ComboBox()
         lblCCIRunBy = New Label()
+        TestFuncToolStripMenuItem = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         tlpCCIDetails.SuspendLayout()
         grpbxPABStatus.SuspendLayout()
@@ -81,7 +82,7 @@ Partial Class frmCCIMain
         ' 
         ' FileToolStripMenuItem
         ' 
-        FileToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {NewToolStripMenuItem})
+        FileToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {NewToolStripMenuItem, TestFuncToolStripMenuItem})
         FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         FileToolStripMenuItem.Size = New Size(37, 22)
         FileToolStripMenuItem.Text = "&File"
@@ -89,7 +90,7 @@ Partial Class frmCCIMain
         ' NewToolStripMenuItem
         ' 
         NewToolStripMenuItem.Name = "NewToolStripMenuItem"
-        NewToolStripMenuItem.Size = New Size(98, 22)
+        NewToolStripMenuItem.Size = New Size(180, 22)
         NewToolStripMenuItem.Text = "&New"
         ' 
         ' lblDistrict
@@ -511,6 +512,12 @@ Partial Class frmCCIMain
         lblCCIRunBy.TabIndex = 7
         lblCCIRunBy.Text = "Run By"
         ' 
+        ' TestFuncToolStripMenuItem
+        ' 
+        TestFuncToolStripMenuItem.Name = "TestFuncToolStripMenuItem"
+        TestFuncToolStripMenuItem.Size = New Size(180, 22)
+        TestFuncToolStripMenuItem.Text = "TestFunc"
+        ' 
         ' frmCCIMain
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -581,4 +588,5 @@ Partial Class frmCCIMain
     Friend WithEvents cmbxRegFileStatus As ComboBox
     Friend WithEvents cmbxCCIRunBy As ComboBox
     Friend WithEvents lblCCIRunBy As Label
+    Friend WithEvents TestFuncToolStripMenuItem As ToolStripMenuItem
 End Class
