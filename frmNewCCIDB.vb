@@ -107,7 +107,7 @@ Public Class frmNewCCIMain
                 cmd.ExecuteNonQuery()
             Next
             If MsgBox("CCI Data Added!", MsgBoxStyle.Information, "CCI Added") = 1 Then
-
+                UtilityFunctions.ClearForm(Me)
             End If
         Catch ex As Exception
             System.Diagnostics.Debug.WriteLine(sql)

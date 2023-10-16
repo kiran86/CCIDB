@@ -114,6 +114,7 @@ Public Class frmNewCCIUnit
             MsgBox(ex.Message & ": " & sql)
         Finally
             ModOleDbCon.closeDB()
-            End Try
+            Me.Close()
+        End Try
     End Sub
 End Class

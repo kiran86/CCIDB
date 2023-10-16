@@ -190,6 +190,7 @@ Public Class frmCCIMain
             MsgBox(ex.Message & ": " & sql)
         Finally
             MsgBox("CCI Data Updated!", , "Updated")
+            UtilityFunctions.ClearForm(Me)
             ModOleDbCon.closeDB()
         End Try
     End Sub
