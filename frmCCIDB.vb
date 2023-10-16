@@ -170,7 +170,7 @@ Public Class frmCCIMain
                 CCI_UNIT_GENDER = '" & cmbxGender.SelectedItem & "',
                 CCI_UNIT_STRENGTH = " & Int(txtbxStrength.Text) & ",
                 Address = '" & txtbxAddress.Text & "',
-                PIN = " & Int(txtbxPIN.Text) & ",
+                PIN = " & If(txtbxPIN.Text = "", 0, Int(txtbxPIN.Text)) & ",
                 CONTACT_NAME = '" & txtbxContactName.Text & "',
                 CONTACT_DESG = '" & txtbxDesignation.Text & "',
                 CONTACT_PHNO = " & If(txtbxPhNo.Text = "", 0, Int(txtbxPhNo.Text)) & ",
@@ -203,7 +203,4 @@ Public Class frmCCIMain
         frmNewCCIUnit.ShowDialog()
     End Sub
 
-    Private Sub TestFuncToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TestFuncToolStripMenuItem.Click
-        UtilityFunctions.ClearForm(Me)
-    End Sub
 End Class
