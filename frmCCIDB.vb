@@ -127,9 +127,9 @@ Public Class frmCCIMain
                 Else
                     rdobtnPABNo.Select()
                 End If
-                txtbxStrength.Text = reader.Item("CCI_UNIT_STRENGTH")
+                txtbxStrength.Text = If(IsDBNull(reader.Item("CCI_UNIT_STRENGTH")), 0, reader.Item("CCI_UNIT_STRENGTH"))
                 txtbxAddress.Text = reader.Item("Address")
-                txtbxPIN.Text = reader.Item("PIN")
+                txtbxPIN.Text = If(IsDBNull(reader.Item("PIN")), 0, reader.Item("PIN"))
                 txtbxRegNo.Text = reader.Item("REG_NO")
                 txtbxContactName.Text = reader.Item("CONTACT_NAME").ToString
                 txtbxDesignation.Text = reader.Item("CONTACT_DESG").ToString
