@@ -170,14 +170,14 @@ Public Class frmCCIMain
                 CCI_UNIT_GENDER = '" & cmbxGender.SelectedItem & "',
                 CCI_UNIT_STRENGTH = " & Int(txtbxStrength.Text) & ",
                 Address = '" & txtbxAddress.Text & "',
-                PIN = " & Int(txtbxPIN.Text) & ",
+                PIN = " & If(txtbxPIN.Text = "", 0, Int(txtbxPIN.Text)) & ",
                 CONTACT_NAME = '" & txtbxContactName.Text & "',
                 CONTACT_DESG = '" & txtbxDesignation.Text & "',
                 CONTACT_PHNO = " & If(txtbxPhNo.Text = "", 0, Int(txtbxPhNo.Text)) & ",
                 PAB_APPROVED = " & rdobtnPABYes.Checked & ",
                 REG_NO = '" & txtbxRegNo.Text & "',
-                REG_DATE = #" & dtmpValidFrom.Value.Date.ToString & "#,
-                REG_VALID_UPTO = #" & dtmpValidTo.Value.Date.ToString & "#,
+                REG_DATE = #" & dtmpValidFrom.Value.Date.ToString("yyyy-MM-dd HH:mm:ss") & "#,
+                REG_VALID_UPTO = #" & dtmpValidTo.Value.Date.ToString("yyyy-MM-dd HH:mm:ss") & "#,
                 REG_STATUS = " & cmbxRegFileStatus.SelectedIndex + 1 & "
                 where ID = " & cmbxUnitNo.SelectedValue & ";"
         Try
@@ -190,6 +190,7 @@ Public Class frmCCIMain
             MsgBox(ex.Message & ": " & sql)
         Finally
             MsgBox("CCI Data Updated!", , "Updated")
+            UtilityFunctions.ClearForm(Me)
             ModOleDbCon.closeDB()
         End Try
     End Sub
@@ -201,4 +202,5 @@ Public Class frmCCIMain
     Private Sub bttnAddUnit_Click(sender As Object, e As EventArgs) Handles bttnAddUnit.Click
         frmNewCCIUnit.ShowDialog()
     End Sub
+
 End Class

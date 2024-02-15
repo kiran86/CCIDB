@@ -47,7 +47,7 @@ Public Class frmNewCCIMain
 
     Private Sub bttnAddCCI_Click(sender As Object, e As EventArgs) Handles bttnAddCCI.Click
         Dim cci_id As Integer
-        Dim part_sql = ""
+        Dim prefix = ""
         Try
             ModOleDbCon.connectDB()
             ' check if already exists
@@ -73,15 +73,16 @@ Public Class frmNewCCIMain
                 '" & cmbxGender.SelectedItem & "',
                 " & Int(txtbxStrength.Text) & ",
                 '" & txtbxAddress.Text & "',
-                " & Int(txtbxPIN.Text) & ",
+                " & If(txtbxPIN.Text = "", 0, Int(txtbxPIN.Text)) & ",
                 '" & txtbxContactName.Text & "',
                 '" & txtbxDesignation.Text & "',
-                " & Int(txtbxPhNo.Text) & ",
+                " & If(txtbxPhNo.Text = "", 0, Int(txtbxPhNo.Text)) & ",
                 " & rdobtnPABYes.Checked & ",
                 '" & txtbxRegNo.Text & "',
-                #" & dtmpValidFrom.Value.Date.ToString & "#,
-                #" & dtmpValidTo.Value.Date.ToString & "#,
+                #" & dtmpValidFrom.Value.Date.ToString("yyyy-MM-dd HH:mm:ss") & "#,
+                #" & dtmpValidTo.Value.Date.ToString("yyyy-MM-dd HH:mm:ss") & "#,
                 " & cmbxRegFileStatus.SelectedIndex + 1 & ");"
+            System.Diagnostics.Debug.WriteLine(sql)
             cmd = ModOleDbCon.conDB.CreateCommand()
             cmd.CommandText = sql
             cmd.ExecuteNonQuery()
@@ -94,17 +95,20 @@ Public Class frmNewCCIMain
                 cci_id = reader.Item("ID")
             End While
             ' Insert into UNIT_TYPES Relation
-            sql = "insert into UNIT_TYPES
+            prefix = "insert into UNIT_TYPES
                     (CCI_ID, TYPE_ID)
-                    values"
-            For Each i In lstbxUnitType.SelectedIndices
-                sql = sql & "(" & cci_id & ", " & i + 1 & "),"
-            Next
-            sql = sql.Remove(sql.Length - 1, 1)
+                    values "
+            ' Dumb MS ACCESS does not support multiple row inserts
+            ' Loop and execute each row inserts in a single sql
             cmd = ModOleDbCon.conDB.CreateCommand()
-            cmd.CommandText = sql
-            cmd.ExecuteNonQuery()
-            MsgBox("CCI Data Added!", MsgBoxStyle.Information, "CCI Added")
+            For Each i In lstbxUnitType.SelectedIndices
+                sql = prefix & "(" & cci_id & ", " & i + 1 & ");"
+                cmd.CommandText = sql
+                cmd.ExecuteNonQuery()
+            Next
+            If MsgBox("CCI Data Added!", MsgBoxStyle.Information, "CCI Added") = 1 Then
+                UtilityFunctions.ClearForm(Me)
+            End If
         Catch ex As Exception
             System.Diagnostics.Debug.WriteLine(sql)
             MsgBox(ex.Message & ": " & sql)

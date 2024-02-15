@@ -76,14 +76,14 @@ Public Class frmNewCCIUnit
                 '" & cmbxGender.SelectedItem & "',
                 " & Int(txtbxStrength.Text) & ",
                 '" & txtbxAddress.Text & "',
-                " & Int(txtbxPIN.Text) & ",
+                " & If(txtbxPIN.Text = "", 0, Int(txtbxPIN.Text)) & ",
                 '" & txtbxContactName.Text & "',
                 '" & txtbxDesignation.Text & "',
-                " & Int(txtbxPhNo.Text) & ",
+                " & If(txtbxPhNo.Text = "", 0, Int(txtbxPhNo.Text)) & ",
                 " & rdobtnPABYes.Checked & ",
                 '" & txtbxRegNo.Text & "',
-                #" & dtmpValidFrom.Value.Date.ToString & "#,
-                #" & dtmpValidTo.Value.Date.ToString & "#,
+                #" & dtmpValidFrom.Value.Date.ToString("yyyy-MM-dd HH:mm:ss") & "#,
+                #" & dtmpValidTo.Value.Date.ToString("yyyy-MM-dd HH:mm:ss") & "#,
                 " & cmbxRegFileStatus.SelectedIndex + 1 & ");"
             cmd = ModOleDbCon.conDB.CreateCommand()
             cmd.CommandText = sql
@@ -97,22 +97,24 @@ Public Class frmNewCCIUnit
                 CCI_ID = reader.Item("ID")
             End While
             ' Insert into UNIT_TYPES Relation
-            sql = "insert into UNIT_TYPES
+            Dim prefix = "insert into UNIT_TYPES
                     (CCI_ID, TYPE_ID)
-                    values"
-            For Each i In lstbxUnitType.SelectedIndices
-                sql = sql & "(" & CCI_ID & ", " & i + 1 & "),"
-            Next
-            sql = sql.Remove(sql.Length - 1, 1)
+                    values "
+            ' Dumb MS ACCESS does not support multiple row inserts
+            ' Loop and execute each row inserts in a single sql
             cmd = ModOleDbCon.conDB.CreateCommand()
-            cmd.CommandText = sql
-            cmd.ExecuteNonQuery()
+            For Each i In lstbxUnitType.SelectedIndices
+                sql = prefix & "(" & CCI_ID & ", " & i + 1 & ");"
+                cmd.CommandText = sql
+                cmd.ExecuteNonQuery()
+            Next
             MsgBox("CCI Data Added!", MsgBoxStyle.Information, "CCI Added")
         Catch ex As Exception
             System.Diagnostics.Debug.WriteLine(sql)
             MsgBox(ex.Message & ": " & sql)
         Finally
             ModOleDbCon.closeDB()
-            End Try
+            Me.Close()
+        End Try
     End Sub
 End Class

@@ -89,8 +89,8 @@ Partial Class frmCCIMain
         ' NewToolStripMenuItem
         ' 
         NewToolStripMenuItem.Name = "NewToolStripMenuItem"
-        NewToolStripMenuItem.Size = New Size(98, 22)
-        NewToolStripMenuItem.Text = "&New"
+        NewToolStripMenuItem.Size = New Size(180, 22)
+        NewToolStripMenuItem.Text = "&New CCI"
         ' 
         ' lblDistrict
         ' 
